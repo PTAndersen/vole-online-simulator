@@ -1,2 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
+
+node_modules/
+.next/
+.swc/
+.*.env
