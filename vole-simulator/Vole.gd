@@ -40,7 +40,7 @@ func reset_global_variables() -> void:
 	
 func create_colored_bg(label_text: String) -> ColorRect:
 	var bg = ColorRect.new()
-	bg.rect_min_size = Vector2(50, 20)  # Set minimum size, adjust as necessary
+	bg.rect_min_size = Vector2(20, 10)  # Set minimum size, adjust as necessary
 	bg.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	bg.size_flags_vertical = Control.SIZE_EXPAND_FILL
 
@@ -66,7 +66,6 @@ func populate_cpu_container():
 		for key in cpu_values.keys():
 			# Create a label for the register name
 			var label = Label.new()
-			label.rect_min_size = Vector2(50, 20)
 			label.align = Label.ALIGN_CENTER
 			label.valign = Label.VALIGN_CENTER
 			label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -78,7 +77,6 @@ func populate_cpu_container():
 			
 			# Create a label for the value
 			var value = Label.new()
-			value.rect_min_size = Vector2(50, 20)
 			value.align = Label.ALIGN_CENTER
 			value.valign = Label.VALIGN_CENTER
 			value.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -93,7 +91,6 @@ func populate_cpu_container():
 		PC.valign = Label.VALIGN_CENTER
 		PC.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		PC.size_flags_vertical = Control.SIZE_EXPAND_FILL
-		PC.rect_min_size = Vector2(50, 20)
 		PC.text = "PC"
 		var PC_bg = create_colored_bg(PC.text)
 		PC_bg.add_child(PC)
@@ -105,7 +102,6 @@ func populate_cpu_container():
 		PCValue.valign = Label.VALIGN_CENTER
 		PCValue.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		PCValue.size_flags_vertical = Control.SIZE_EXPAND_FILL
-		PCValue.rect_min_size = Vector2(50, 20)
 		PCValue.text = pc
 		var PCValue_bg = create_colored_bg(PCValue.text)
 		PCValue_bg.add_child(PCValue)
@@ -116,7 +112,6 @@ func populate_cpu_container():
 		IR.valign = Label.VALIGN_CENTER
 		IR.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		IR.size_flags_vertical = Control.SIZE_EXPAND_FILL
-		IR.rect_min_size = Vector2(50, 20)
 		IR.text = "IR"
 		var IR_bg = create_colored_bg(IR.text)
 		IR_bg.add_child(IR)
@@ -128,7 +123,6 @@ func populate_cpu_container():
 		IRValue.valign = Label.VALIGN_CENTER
 		IRValue.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		IRValue.size_flags_vertical = Control.SIZE_EXPAND_FILL
-		IRValue.rect_min_size = Vector2(50, 20)
 		IRValue.text = ir
 		var IRValue_bg = create_colored_bg(IRValue.text)
 		IRValue_bg.add_child(IRValue)
@@ -170,7 +164,6 @@ func populate_memory_container():
 				label.valign = Label.VALIGN_CENTER
 				label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 				label.size_flags_vertical = Control.SIZE_EXPAND_FILL
-				label.rect_min_size = Vector2(50, 20)
 				label.text = temp_grid[row][column]
 				var bg = create_colored_bg(label.text)
 

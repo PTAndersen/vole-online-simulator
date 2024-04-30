@@ -37,7 +37,7 @@ margin_bottom = 45.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Reset"
+text = "Reset CPU"
 
 [node name="LoadInput" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Top/ButtonBox"]
 margin_top = 49.0

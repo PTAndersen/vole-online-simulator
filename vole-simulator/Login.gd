@@ -63,3 +63,11 @@ func _on_request_completed(result, response_code, headers, body):
 		get_tree().change_scene("res://Vole.tscn")
 	else:
 		Log.text = "Login failed: " + str(response_code)
+
+
+func _on_Button_pressed():
+	get_tree().change_scene("res://Register.tscn")
+
+
+func _on_Offline_pressed():
+	get_tree().change_scene("res://Vole.tscn")

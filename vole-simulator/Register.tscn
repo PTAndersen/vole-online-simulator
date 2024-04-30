@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Login.gd" type="Script" id=1]
+[ext_resource path="res://Register.gd" type="Script" id=1]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -32,60 +32,82 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 2.04
 alignment = 1
 
-[node name="Mail" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-margin_top = 187.0
+[node name="Firstname" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+margin_top = 136.0
 margin_right = 505.0
-margin_bottom = 201.0
+margin_bottom = 150.0
 size_flags_vertical = 0
-text = "Mail"
+text = "Firstname"
+autowrap = true
+
+[node name="FirstnameInput" type="LineEdit" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+margin_top = 154.0
+margin_right = 505.0
+margin_bottom = 178.0
+
+[node name="Lastname" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+margin_top = 182.0
+margin_right = 505.0
+margin_bottom = 213.0
+size_flags_vertical = 0
+text = "
+Lastname"
+autowrap = true
+
+[node name="LastnameInput" type="LineEdit" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+margin_top = 217.0
+margin_right = 505.0
+margin_bottom = 241.0
+
+[node name="Mail" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+margin_top = 245.0
+margin_right = 505.0
+margin_bottom = 276.0
+size_flags_vertical = 0
+text = "
+Mail"
 autowrap = true
 
 [node name="MailInput" type="LineEdit" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-margin_top = 205.0
+margin_top = 280.0
 margin_right = 505.0
-margin_bottom = 229.0
+margin_bottom = 304.0
 
 [node name="Password" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-margin_top = 233.0
+margin_top = 308.0
 margin_right = 505.0
-margin_bottom = 264.0
+margin_bottom = 339.0
 size_flags_vertical = 0
 text = "
 Password"
 autowrap = true
 
 [node name="PasswordInput" type="LineEdit" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-margin_top = 268.0
+margin_top = 343.0
 margin_right = 505.0
-margin_bottom = 292.0
+margin_bottom = 367.0
 secret = true
 
-[node name="Login" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-margin_top = 296.0
+[node name="Register" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+margin_top = 371.0
 margin_right = 505.0
-margin_bottom = 316.0
-text = "Login"
+margin_bottom = 391.0
+text = "Register"
 
 [node name="Log" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-margin_top = 320.0
+margin_top = 395.0
 margin_right = 505.0
-margin_bottom = 351.0
+margin_bottom = 426.0
 size_flags_vertical = 0
 text = "
 "
 autowrap = true
 
-[node name="Register" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-margin_top = 355.0
+[node name="Back" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+margin_top = 430.0
 margin_right = 505.0
-margin_bottom = 375.0
-text = "Register"
-
-[node name="Offline" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-margin_top = 379.0
-margin_right = 505.0
-margin_bottom = 399.0
-text = "Offline version"
+margin_bottom = 450.0
+text = "Back"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
 margin_left = 761.0
@@ -96,6 +118,5 @@ size_flags_vertical = 3
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
-[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/Login" to="." method="_on_Login_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/Register" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/Offline" to="." method="_on_Offline_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/Register" to="." method="_on_Register_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/Back" to="." method="_on_Back_pressed"]
