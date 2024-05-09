@@ -1,15 +1,11 @@
 extends Control
 
-
-# Declare member variables here. Examples:
 var http_request: HTTPRequest
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	http_request = get_node("HTTPRequest")  # Make sure you have added this node in the editor
+	http_request = get_node("HTTPRequest") 
 	http_request.connect("request_completed", self, "_on_request_completed")
-
 
 
 func _on_Login_pressed() -> void:
@@ -39,10 +35,9 @@ func _on_Login_pressed() -> void:
 	send_login_request(body)
 
 
-# Helper function to send the login HTTP request
 func send_login_request(body: String) -> void:
 	var error = http_request.request(
-		"http://localhost:3000/api/login",  # Your API endpoint
+		"http://localhost:3000/api/login",  # API endpoint
 		["Content-Type: application/json"],  # Necessary headers
 		true,  # Use SSL for HTTPS
 		HTTPClient.METHOD_POST,  # POST method
@@ -53,21 +48,19 @@ func send_login_request(body: String) -> void:
 		get_node("PanelContainer/HBoxContainer/VBoxContainer/Log").text = "Failed to send request."
 
 
-# Handle the HTTP response
 func _on_request_completed(result, response_code, headers, body):
 	var Log = get_node("PanelContainer/HBoxContainer/VBoxContainer/Log")
 	if response_code == 200:
 		var response = parse_json(body.get_string_from_utf8())
-		# Check the response for login success or specific data
 		Log.text = "Login successful!"
-		get_tree().change_scene("res://Vole.tscn")
+		get_tree().change_scene("res://Vole/Vole.tscn")
 	else:
 		Log.text = "Login failed: " + str(response_code)
 
 
 func _on_Button_pressed():
-	get_tree().change_scene("res://Register.tscn")
+	get_tree().change_scene("res://Authentication/Register.tscn")
 
 
 func _on_Offline_pressed():
-	get_tree().change_scene("res://Vole.tscn")
+	get_tree().change_scene("res://Vole/Vole.tscn")

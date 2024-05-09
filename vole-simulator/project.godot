@@ -8,10 +8,32 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Object",
+"class": "CPUData",
+"language": "GDScript",
+"path": "res://Vole/CPUData.gd"
+}, {
+"base": "Object",
+"class": "CPUSimulator",
+"language": "GDScript",
+"path": "res://Vole/CPUSimulator.gd"
+}, {
+"base": "Object",
+"class": "HexUtility",
+"language": "GDScript",
+"path": "res://Vole/HexUtility.gd"
+} ]
+_global_script_class_icons={
+"CPUData": "",
+"CPUSimulator": "",
+"HexUtility": ""
+}
+
 [application]
 
 config/name="Vole-online-simulator"
-run/main_scene="res://Login.tscn"
+run/main_scene="res://Authentication/Login.tscn"
 config/icon="res://icon.png"
 
 [gui]
