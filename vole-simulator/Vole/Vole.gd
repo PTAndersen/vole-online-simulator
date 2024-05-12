@@ -13,6 +13,8 @@ func _ready():
 	cpu_data.reset_global_variables()
 	populate_memory_container()
 	populate_cpu_container()
+	var classroom_name = get_node("PanelContainer/MarginContainer/HBoxContainer/AssignmentsContainer/ClassName")
+	classroom_name.text = SessionManager.classroom_name
 
 
 func create_colored_bg(label_text: String) -> ColorRect:
@@ -31,7 +33,7 @@ func create_colored_bg(label_text: String) -> ColorRect:
 
 
 func populate_cpu_container():
-	var cpu_container = get_node("PanelContainer/MarginContainer/VBoxContainer/Bottom/CPUData")
+	var cpu_container = get_node("PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Bottom/CPUData")
 	
 	if cpu_container != null:
 		
@@ -104,7 +106,7 @@ func populate_cpu_container():
 		print("Memory GridContainer not found!")
 
 func populate_memory_container():
-	var memory_container = get_node("PanelContainer/MarginContainer/VBoxContainer/Bottom/Memory")
+	var memory_container = get_node("PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Bottom/Memory")
 	
 	if memory_container != null:
 		for child in memory_container.get_children():
@@ -154,8 +156,16 @@ func _process(delta):
 
 
 func _on_Quit_pressed() -> void:
+	SessionManager.reset_class_info()
+	var classroom_name = get_node("PanelContainer/MarginContainer/HBoxContainer/AssignmentsContainer/ClassName")
+	classroom_name.text = SessionManager.classroom_name
 	cpu_data.run_cpu = false
-	get_tree().change_scene("res://Authentication/Login.tscn")
+	if SessionManager.role == "TEACHER":
+		get_tree().change_scene("res://Menu/Teacher/TeacherMenu.tscn")
+	elif SessionManager.role == "STUDENT":
+		get_tree().change_scene("res://Menu/Student/StudentMenu.tscn")
+	else:
+		get_tree().change_scene("res://Authentication/Login.tscn")
 
 
 func _on_Run_pressed() -> void:
@@ -175,7 +185,7 @@ func _on_ClearMemory_pressed():
 
 
 func _on_LoadData_pressed():
-	var text_input_container = get_node("PanelContainer/MarginContainer/VBoxContainer/Top/TextInput")
+	var text_input_container = get_node("PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/TextInput")
 	
 	if text_input_container != null:
 		var input_text = text_input_container.text

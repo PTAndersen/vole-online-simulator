@@ -1,0 +1,134 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Menu/Student/StudentMenu.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 593.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+margin_right = 330.0
+margin_bottom = 586.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 100
+alignment = 1
+
+[node name="ActionContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+margin_top = 72.0
+margin_right = 330.0
+margin_bottom = 128.0
+
+[node name="SelectedClassroom" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/ActionContainer"]
+margin_right = 330.0
+margin_bottom = 14.0
+size_flags_vertical = 0
+autowrap = true
+
+[node name="SelectedClassCode" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/ActionContainer"]
+margin_top = 18.0
+margin_right = 330.0
+margin_bottom = 32.0
+size_flags_vertical = 0
+autowrap = true
+
+[node name="JoinClassroom" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/ActionContainer"]
+margin_top = 36.0
+margin_right = 330.0
+margin_bottom = 56.0
+text = "Join selected classroom"
+
+[node name="AddContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+margin_top = 228.0
+margin_right = 330.0
+margin_bottom = 346.0
+
+[node name="JoinLabel" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/AddContainer"]
+margin_right = 330.0
+margin_bottom = 31.0
+size_flags_vertical = 0
+text = "Add classroom (classroom code)
+"
+autowrap = true
+
+[node name="ClassCodeInput" type="LineEdit" parent="PanelContainer/HBoxContainer/VBoxContainer/AddContainer"]
+margin_top = 35.0
+margin_right = 330.0
+margin_bottom = 59.0
+
+[node name="AddButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/AddContainer"]
+margin_top = 63.0
+margin_right = 330.0
+margin_bottom = 83.0
+text = "Add classroom"
+
+[node name="Log" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/AddContainer"]
+margin_top = 87.0
+margin_right = 330.0
+margin_bottom = 118.0
+size_flags_vertical = 0
+text = "
+"
+autowrap = true
+
+[node name="AccountContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+margin_top = 446.0
+margin_right = 330.0
+margin_bottom = 514.0
+
+[node name="OfflineVersion" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/AccountContainer"]
+margin_right = 330.0
+margin_bottom = 20.0
+text = "Offline Vole version"
+
+[node name="Settings Button" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/AccountContainer"]
+margin_top = 24.0
+margin_right = 330.0
+margin_bottom = 44.0
+text = "Settings"
+
+[node name="LogoutButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/AccountContainer"]
+margin_top = 48.0
+margin_right = 330.0
+margin_bottom = 68.0
+text = "Logout"
+
+[node name="VBoxContainer1" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+margin_left = 334.0
+margin_right = 1010.0
+margin_bottom = 586.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.04
+
+[node name="Classrooms" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer1"]
+margin_right = 676.0
+margin_bottom = 14.0
+size_flags_vertical = 0
+text = "Classrooms"
+autowrap = true
+
+[node name="ClassroomContainer" type="GridContainer" parent="PanelContainer/HBoxContainer/VBoxContainer1"]
+margin_top = 18.0
+margin_right = 676.0
+margin_bottom = 18.0
+columns = 5
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/ActionContainer/JoinClassroom" to="." method="_on_JoinClassroom_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/AddContainer/AddButton" to="." method="_on_AddButton_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/AccountContainer/OfflineVersion" to="." method="_on_OfflineVersion_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/AccountContainer/Settings Button" to="." method="_on_Settings_Button_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/AccountContainer/LogoutButton" to="." method="_on_LogoutButton_pressed"]

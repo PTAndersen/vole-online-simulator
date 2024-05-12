@@ -33,80 +33,101 @@ size_flags_stretch_ratio = 2.04
 alignment = 1
 
 [node name="Firstname" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-margin_top = 136.0
+margin_top = 90.0
 margin_right = 505.0
-margin_bottom = 150.0
+margin_bottom = 104.0
 size_flags_vertical = 0
 text = "Firstname"
 autowrap = true
 
 [node name="FirstnameInput" type="LineEdit" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-margin_top = 154.0
+margin_top = 108.0
 margin_right = 505.0
-margin_bottom = 178.0
+margin_bottom = 132.0
 
 [node name="Lastname" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-margin_top = 182.0
+margin_top = 136.0
 margin_right = 505.0
-margin_bottom = 213.0
+margin_bottom = 167.0
 size_flags_vertical = 0
 text = "
 Lastname"
 autowrap = true
 
 [node name="LastnameInput" type="LineEdit" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-margin_top = 217.0
+margin_top = 171.0
 margin_right = 505.0
-margin_bottom = 241.0
+margin_bottom = 195.0
 
 [node name="Mail" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-margin_top = 245.0
+margin_top = 199.0
 margin_right = 505.0
-margin_bottom = 276.0
+margin_bottom = 230.0
 size_flags_vertical = 0
 text = "
 Mail"
 autowrap = true
 
 [node name="MailInput" type="LineEdit" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-margin_top = 280.0
+margin_top = 234.0
 margin_right = 505.0
-margin_bottom = 304.0
+margin_bottom = 258.0
 
 [node name="Password" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-margin_top = 308.0
+margin_top = 262.0
 margin_right = 505.0
-margin_bottom = 339.0
+margin_bottom = 293.0
 size_flags_vertical = 0
 text = "
 Password"
 autowrap = true
 
 [node name="PasswordInput" type="LineEdit" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-margin_top = 343.0
+margin_top = 297.0
 margin_right = 505.0
-margin_bottom = 367.0
+margin_bottom = 321.0
 secret = true
 
-[node name="Register" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-margin_top = 371.0
+[node name="ConfirmPassword" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+margin_top = 325.0
 margin_right = 505.0
-margin_bottom = 391.0
+margin_bottom = 356.0
+size_flags_vertical = 0
+text = "
+Confirm password"
+autowrap = true
+
+[node name="ConfirmPasswordInput" type="LineEdit" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+margin_top = 360.0
+margin_right = 505.0
+margin_bottom = 384.0
+secret = true
+
+[node name="RoleCheckBox" type="CheckBox" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+margin_top = 388.0
+margin_right = 505.0
+margin_bottom = 412.0
+text = "I am a teacher"
+
+[node name="Register" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+margin_top = 416.0
+margin_right = 505.0
+margin_bottom = 436.0
 text = "Register"
 
 [node name="Log" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-margin_top = 395.0
+margin_top = 440.0
 margin_right = 505.0
-margin_bottom = 426.0
+margin_bottom = 471.0
 size_flags_vertical = 0
 text = "
 "
 autowrap = true
 
 [node name="Back" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer"]
-margin_top = 430.0
+margin_top = 475.0
 margin_right = 505.0
-margin_bottom = 450.0
+margin_bottom = 495.0
 text = "Back"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]

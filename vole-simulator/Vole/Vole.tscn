@@ -18,20 +18,26 @@ margin_top = 7.0
 margin_right = 1017.0
 margin_bottom = 593.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
 margin_right = 1010.0
 margin_bottom = 586.0
 
-[node name="Top" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-margin_right = 1010.0
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+margin_right = 1006.0
+margin_bottom = 586.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Top" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+margin_right = 1006.0
 margin_bottom = 291.0
 size_flags_vertical = 3
 
-[node name="ButtonBox" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Top"]
+[node name="ButtonBox" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top"]
 margin_right = 80.0
 margin_bottom = 291.0
 
-[node name="Reset" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Top/ButtonBox"]
+[node name="Reset" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
 margin_right = 80.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 80, 0 )
@@ -39,7 +45,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Reset CPU"
 
-[node name="LoadInput" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Top/ButtonBox"]
+[node name="LoadInput" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
 margin_top = 49.0
 margin_right = 80.0
 margin_bottom = 94.0
@@ -48,7 +54,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Load Input"
 
-[node name="Run" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Top/ButtonBox"]
+[node name="Run" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
 margin_top = 98.0
 margin_right = 80.0
 margin_bottom = 143.0
@@ -57,7 +63,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Run"
 
-[node name="Single Step" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Top/ButtonBox"]
+[node name="Single Step" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
 margin_top = 147.0
 margin_right = 80.0
 margin_bottom = 192.0
@@ -66,7 +72,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "SingleStep"
 
-[node name="Halt" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Top/ButtonBox"]
+[node name="Halt" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
 margin_top = 196.0
 margin_right = 80.0
 margin_bottom = 241.0
@@ -75,7 +81,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Halt"
 
-[node name="Quit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Top/ButtonBox"]
+[node name="Quit" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
 margin_top = 245.0
 margin_right = 80.0
 margin_bottom = 291.0
@@ -84,39 +90,47 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Quit"
 
-[node name="TextInput" type="TextEdit" parent="PanelContainer/MarginContainer/VBoxContainer/Top"]
+[node name="TextInput" type="TextEdit" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top"]
 margin_left = 84.0
-margin_right = 1010.0
+margin_right = 1006.0
 margin_bottom = 291.0
 rect_min_size = Vector2( 400, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 2 )
 
-[node name="Bottom" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Bottom" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 margin_top = 295.0
-margin_right = 1010.0
+margin_right = 1006.0
 margin_bottom = 586.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CPUData" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Bottom"]
+[node name="CPUData" type="GridContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Bottom"]
 margin_right = 115.0
 margin_bottom = 291.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.13
 columns = 2
 
-[node name="Memory" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Bottom"]
+[node name="Memory" type="GridContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Bottom"]
 margin_left = 119.0
-margin_right = 1010.0
+margin_right = 1006.0
 margin_bottom = 291.0
 size_flags_horizontal = 3
 columns = 17
 
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Top/ButtonBox/Reset" to="." method="_on_ClearMemory_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Top/ButtonBox/LoadInput" to="." method="_on_LoadData_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Top/ButtonBox/Run" to="." method="_on_Run_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Top/ButtonBox/Single Step" to="." method="_on_Single_Step_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Top/ButtonBox/Halt" to="." method="_on_Halt_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Top/ButtonBox/Quit" to="." method="_on_Quit_pressed"]
+[node name="AssignmentsContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 1010.0
+margin_right = 1010.0
+margin_bottom = 586.0
+
+[node name="ClassName" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/AssignmentsContainer"]
+margin_bottom = 14.0
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox/Reset" to="." method="_on_ClearMemory_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox/LoadInput" to="." method="_on_LoadData_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox/Run" to="." method="_on_Run_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox/Single Step" to="." method="_on_Single_Step_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox/Halt" to="." method="_on_Halt_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox/Quit" to="." method="_on_Quit_pressed"]

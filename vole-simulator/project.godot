@@ -36,6 +36,10 @@ config/name="Vole-online-simulator"
 run/main_scene="res://Authentication/Login.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+SessionManager="*res://SessionManager.gd"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

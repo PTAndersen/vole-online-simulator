@@ -7,10 +7,51 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        Int    @id @default(autoincrement())
-  email     String @unique
-  password  String
-  firstName String
-  lastName  String
+model Classroom {
+  id          Int         @id @default(autoincrement())
+  name        String
+  classCode   String      @unique
+  teacher     User        @relation(name: "Teacher", fields: [teacherId], references: [id])
+  teacherId   Int
+  students    User[]      @relation(name: "Students")
+  assignments Assignment[]
 }
+
+
+model User {
+  id          Int         @id @default(autoincrement())
+  email       String      @unique
+  password    String
+  firstName   String
+  lastName    String
+  role        String      @default("STUDENT") // Changed from enum to string
+  createdExercises Exercise[] @relation("ExerciseCreator")
+  assignments Assignment[]
+  classrooms  Classroom[] @relation("Teacher")
+  enrollments Classroom[] @relation("Students")
+}
+
+model Assignment {
+  id          Int         @id @default(autoincrement())
+  exercise    Exercise    @relation(fields: [exerciseId], references: [id])
+  exerciseId  Int
+  assignedTo  User        @relation(fields: [userId], references: [id])
+  userId      Int
+  classroom   Classroom   @relation(fields: [classroomId], references: [id])
+  classroomId Int
+  status      String      @default("ASSIGNED") // Changed from enum to string
+  result      String?     
+}
+
+
+model Exercise {
+  id                   Int          @id @default(autoincrement())
+  name                 String
+  description          String
+  cycleConstraint      Int
+  mustUseInstructions  String
+  creator              User   @relation("ExerciseCreator", fields: [creatorId], references: [id])
+  creatorId            Int
+  assignments          Assignment[]
+}
+

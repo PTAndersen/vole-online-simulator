@@ -4,6 +4,7 @@ var http_request: HTTPRequest
 
 
 func _ready() -> void:
+	SessionManager.reset_class_info()
 	http_request = get_node("HTTPRequest") 
 	http_request.connect("request_completed", self, "_on_request_completed")
 
@@ -43,7 +44,6 @@ func send_login_request(body: String) -> void:
 		HTTPClient.METHOD_POST,  # POST method
 		body  # Request body as JSON string
 	)
-
 	if error != OK:
 		get_node("PanelContainer/HBoxContainer/VBoxContainer/Log").text = "Failed to send request."
 
@@ -52,8 +52,16 @@ func _on_request_completed(result, response_code, headers, body):
 	var Log = get_node("PanelContainer/HBoxContainer/VBoxContainer/Log")
 	if response_code == 200:
 		var response = parse_json(body.get_string_from_utf8())
-		Log.text = "Login successful!"
-		get_tree().change_scene("res://Vole/Vole.tscn")
+		if "token" in response and "role" in response:
+			SessionManager.store_token(response["token"])
+			SessionManager.role = response["role"]
+			Log.text = "Login successful!"
+			if response["role"] == "STUDENT":
+				get_tree().change_scene("res://Menu/Student/StudentMenu.tscn")
+			elif response["role"] == "TEACHER":
+				get_tree().change_scene("res://Menu/Teacher/TeacherMenu.tscn")
+		else:
+			Log.text = "Login failed: Token not found in response"
 	else:
 		Log.text = "Login failed: " + str(response_code)
 

@@ -7,7 +7,7 @@ export default function Home() {
         <iframe
           src="/simulator/Vole.html"
           className="w-11/12 sm:w-4/5 md:w-3/4 lg:w-2/3 xl:w-2/3 2xl:w-2/3 mx-auto border-none mb-8"
-          style={{ height: '800px' }} // Using inline style for specific pixel height
+          style={{ height: '800px' }}
           title="Vole Online Simulator"
         ></iframe>
 
