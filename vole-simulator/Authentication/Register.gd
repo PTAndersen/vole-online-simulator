@@ -54,11 +54,11 @@ func _on_Register_pressed() -> void:
 
 func send_registration_request(body: String) -> void:
 	var error = http_request.request(
-		"http://localhost:3000/api/register",  # Adjust API endpoint to registration
-		["Content-Type: application/json"],  # Necessary headers
-		true,  # Use SSL for HTTPS (adjust as necessary)
-		HTTPClient.METHOD_POST,  # POST method
-		body  # Request body as JSON string
+		"http://localhost:3000/api/register",
+		["Content-Type: application/json"],
+		true,  # SSL
+		HTTPClient.METHOD_POST, 
+		body
 	)
 
 	if error != OK:
@@ -72,7 +72,10 @@ func _on_request_completed(result, response_code, headers, body):
 		if "token" in response:
 			SessionManager.store_token(response["token"])
 			Log.text = "Registration successful! Please log in."
-			get_tree().change_scene("res://Vole/Vole.tscn")
+			if response["role"] == "STUDENT":
+				get_tree().change_scene("res://Menu/Student/StudentMenu.tscn")
+			elif response["role"] == "TEACHER":
+				get_tree().change_scene("res://Menu/Teacher/TeacherMenu.tscn")
 		else:
 			Log.text = "Login failed: Token not found in response"
 	else:

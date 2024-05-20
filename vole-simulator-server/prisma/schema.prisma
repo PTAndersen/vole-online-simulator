@@ -15,6 +15,7 @@ model Classroom {
   teacherId   Int
   students    User[]      @relation(name: "Students")
   assignments Assignment[]
+  exercises   Exercise[]
 }
 
 
@@ -24,7 +25,7 @@ model User {
   password    String
   firstName   String
   lastName    String
-  role        String      @default("STUDENT") // Changed from enum to string
+  role        String      @default("STUDENT")
   createdExercises Exercise[] @relation("ExerciseCreator")
   assignments Assignment[]
   classrooms  Classroom[] @relation("Teacher")
@@ -39,7 +40,7 @@ model Assignment {
   userId      Int
   classroom   Classroom   @relation(fields: [classroomId], references: [id])
   classroomId Int
-  status      String      @default("ASSIGNED") // Changed from enum to string
+  status      String      @default("UNCOMPLETED")
   result      String?     
 }
 
@@ -48,10 +49,16 @@ model Exercise {
   id                   Int          @id @default(autoincrement())
   name                 String
   description          String
-  cycleConstraint      Int
+  randomCell           String?     
+  resultCell           String       
+  resultValue          String       
+  cycleConstraint      Int?
   mustUseInstructions  String
-  creator              User   @relation("ExerciseCreator", fields: [creatorId], references: [id])
+  creator              User         @relation("ExerciseCreator", fields: [creatorId], references: [id])
   creatorId            Int
+  classroom            Classroom    @relation(fields: [classroomId], references: [id])
+  classroomId          Int
   assignments          Assignment[]
 }
+
 

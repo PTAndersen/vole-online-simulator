@@ -127,6 +127,7 @@ columns = 2
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/ActionContainer/ReviewClassroom" to="." method="_on_ReviewClassroom_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/AddContainer/CreateButton" to="." method="_on_CreateButton_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/AccountContainer/OfflineVersion" to="." method="_on_OfflineVersion_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/AccountContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]

@@ -7,7 +7,10 @@ const prisma = new PrismaClient();
 
 async function joinClass(classCode: string, studentId: number): Promise<boolean> {
     const classroom = await prisma.classroom.findUnique({
-        where: { classCode }
+        where: { classCode },
+        include: {
+            exercises: true
+        }
     });
 
     if (!classroom) {
@@ -44,13 +47,25 @@ async function joinClass(classCode: string, studentId: number): Promise<boolean>
         }
     });
 
+    // Create assignments for each exercise in the classroom
+    await Promise.all(classroom.exercises.map(exercise =>
+        prisma.assignment.create({
+            data: {
+                exerciseId: exercise.id,
+                userId: studentId,
+                classroomId: classroom.id,
+                status: "UNCOMPLETED"
+            }
+        })
+    ));
+
     return true;
 }
 
 export const POST = async (request: NextRequest) => {
     const data = await request.json();
-        const { classCode } = data;
-        const sessionToken = request.headers.get('authorization')?.split(' ')[1];
+    const { classCode } = data;
+    const sessionToken = request.headers.get('authorization')?.split(' ')[1];
 
     if (!classCode || !sessionToken) {
         return new NextResponse(JSON.stringify({ message: 'Class code and authorization token are required' }), { status: 400 });

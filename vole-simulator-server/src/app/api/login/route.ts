@@ -7,9 +7,6 @@ const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRATION = process.env.JWT_EXPIRATION || '1h';
 
-export const GET = async () => {
-  return new NextResponse(JSON.stringify({ message: 'Hello, Next.js Version 13!' }), { status: 200 });
-};
 
 async function authenticateUser(email: string, password: string): Promise<any> {
   const user = await prisma.user.findUnique({

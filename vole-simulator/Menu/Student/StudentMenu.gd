@@ -86,9 +86,9 @@ func send_classroom_fetch_request(headers: PoolStringArray) -> void:
 	http_request.connect("request_completed", self, "_on_classrooms_fetched")
 	print("Fetching classrooms")
 	var error = http_request.request(
-		"http://localhost:3000/api/get-classrooms",  # API URL
-		headers,  # Pass headers including Authorization
-		false,  # GET request does not have body; set use_ssl to true if using https
+		"http://localhost:3000/api/get-classrooms",
+		headers,
+		false,
 		HTTPClient.METHOD_GET
 	)
 	if error != OK:
@@ -121,7 +121,7 @@ func send_join_class_request(body):
 	var error = http_request.request(
 		"http://localhost:3000/api/join-class",
 		headers,
-		true,  # Use SSL if true
+		true,
 		HTTPClient.METHOD_POST,
 		body
 	)

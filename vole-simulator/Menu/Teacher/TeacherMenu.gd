@@ -30,9 +30,14 @@ func _on_CreateButton_pressed() -> void:
 		"sessionToken": SessionManager.session_token,
 		"className": create_input.text
 	}
-	print(create_class_data)
 	var body = to_json(create_class_data)
 	send_create_class_request(body)
+
+
+func _on_ReviewClassroom_pressed() -> void:
+	SessionManager.classroom_name = current_class
+	SessionManager.class_code = current_class_code
+	get_tree().change_scene("res://Menu/Teacher/ClassroomReview.tscn")
 
 
 func _on_OfflineVersion_pressed() -> void:
@@ -49,8 +54,9 @@ func _on_LogoutButton_pressed() -> void:
 
 
 func update_classroom_list():
-	send_classroom_fetch_request(headers)
+	send_classrooms_fetch_request(headers)
 	populate_classroom_container()
+
 
 func populate_classroom_container():
 	var classroom_container = get_node("PanelContainer/HBoxContainer/VBoxContainer1/ClassroomContainer")
@@ -64,18 +70,17 @@ func populate_classroom_container():
 		button.rect_min_size.y = 20
 		classroom_container.add_child(button)
 
+
 func _on_classroom_button_pressed(classroom_name, class_code):
 	current_class = classroom_name
 	current_class_code = class_code
 	get_node("PanelContainer/HBoxContainer/VBoxContainer/ActionContainer/SelectedClassroom").text = "Selected classroom: " + current_class
 	get_node("PanelContainer/HBoxContainer/VBoxContainer/ActionContainer/SelectedClassCode").text = "Selected classcode: " + current_class_code
-	print("Selected class: ", current_class, "Code: ", current_class_code)
 
 
-func send_classroom_fetch_request(headers: PoolStringArray) -> void:
+func send_classrooms_fetch_request(headers: PoolStringArray) -> void:
 	http_request.disconnect("request_completed", self, "_on_create_class_completed")
 	http_request.connect("request_completed", self, "_on_classrooms_fetched")
-	print("Fetching classrooms")
 	var error = http_request.request(
 		"http://localhost:3000/api/get-classrooms",  # API URL
 		headers,  # Pass headers including Authorization
@@ -87,10 +92,8 @@ func send_classroom_fetch_request(headers: PoolStringArray) -> void:
 
 
 func _on_classrooms_fetched(result, response_code, headers, body):
-	print("Classrooms fetched")
 	var response = parse_json(body.get_string_from_utf8())
 	if response_code == 200:
-		print("Fetched classrooms: ", response)
 		classes.clear()
 		class_codes.clear()
 		for classroom in response["classrooms"]:
@@ -104,23 +107,21 @@ func _on_classrooms_fetched(result, response_code, headers, body):
 	http_request.disconnect("request_completed", self, "_on_classrooms_fetched")
 
 
-
 func send_create_class_request(body: String) -> void:
 	http_request.disconnect("request_completed", self, "_on_classrooms_fetched")
 	http_request.connect("request_completed", self, "_on_create_class_completed")
 	var error = http_request.request(
-		"http://localhost:3000/api/create-class",  # Make sure the URL is correct
-		["Content-Type: application/json"],  # Headers
-		true,  # SSL, change as necessary
-		HTTPClient.METHOD_POST,  # Method type
-		body  # JSON string body
+		"http://localhost:3000/api/create-class",
+		headers,
+		true,  # SSL
+		HTTPClient.METHOD_POST,
+		body
 	)
 	if error != OK:
 		print("Failed to send class creation request: ", error)
 
 
 func _on_create_class_completed(result, response_code, headers, body):
-	print("Create class complete")
 	var log_label = get_node("PanelContainer/HBoxContainer/VBoxContainer/AddContainer/Log")
 	if response_code == 201:
 		var response = parse_json(body.get_string_from_utf8())

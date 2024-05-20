@@ -37,52 +37,49 @@ size_flags_vertical = 3
 margin_right = 80.0
 margin_bottom = 291.0
 
-[node name="Reset" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
+[node name="ResetCPU" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
 margin_right = 80.0
-margin_bottom = 45.0
-rect_min_size = Vector2( 80, 0 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
+margin_bottom = 20.0
 text = "Reset CPU"
 
 [node name="LoadInput" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
-margin_top = 49.0
+margin_top = 24.0
 margin_right = 80.0
-margin_bottom = 94.0
+margin_bottom = 74.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Load Input"
 
 [node name="Run" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
-margin_top = 98.0
+margin_top = 78.0
 margin_right = 80.0
-margin_bottom = 143.0
+margin_bottom = 128.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Run"
 
-[node name="Single Step" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
-margin_top = 147.0
+[node name="SingleStep" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
+margin_top = 132.0
 margin_right = 80.0
-margin_bottom = 192.0
+margin_bottom = 182.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "SingleStep"
 
 [node name="Halt" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
-margin_top = 196.0
+margin_top = 186.0
 margin_right = 80.0
-margin_bottom = 241.0
+margin_bottom = 236.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Halt"
 
 [node name="Quit" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
-margin_top = 245.0
+margin_top = 240.0
 margin_right = 80.0
 margin_bottom = 291.0
 rect_min_size = Vector2( 80, 0 )
@@ -128,9 +125,11 @@ margin_bottom = 586.0
 [node name="ClassName" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/AssignmentsContainer"]
 margin_bottom = 14.0
 
-[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox/Reset" to="." method="_on_ClearMemory_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox/LoadInput" to="." method="_on_LoadData_pressed"]
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox/ResetCPU" to="." method="_on_ResetCPU_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox/LoadInput" to="." method="_on_LoadInput_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox/Run" to="." method="_on_Run_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox/Single Step" to="." method="_on_Single_Step_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox/SingleStep" to="." method="_on_SingleStep_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox/Halt" to="." method="_on_Halt_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox/Quit" to="." method="_on_Quit_pressed"]

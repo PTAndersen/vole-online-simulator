@@ -31,18 +31,17 @@ func _on_Login_pressed() -> void:
 		"email": mail_text,
 		"password": password_text
 	}
-	print(login_data)
 	var body = to_json(login_data)
 	send_login_request(body)
 
 
 func send_login_request(body: String) -> void:
 	var error = http_request.request(
-		"http://localhost:3000/api/login",  # API endpoint
-		["Content-Type: application/json"],  # Necessary headers
-		true,  # Use SSL for HTTPS
-		HTTPClient.METHOD_POST,  # POST method
-		body  # Request body as JSON string
+		"http://localhost:3000/api/login",
+		["Content-Type: application/json"],
+		true,  # SSL
+		HTTPClient.METHOD_POST,
+		body
 	)
 	if error != OK:
 		get_node("PanelContainer/HBoxContainer/VBoxContainer/Log").text = "Failed to send request."
@@ -61,7 +60,7 @@ func _on_request_completed(result, response_code, headers, body):
 			elif response["role"] == "TEACHER":
 				get_tree().change_scene("res://Menu/Teacher/TeacherMenu.tscn")
 		else:
-			Log.text = "Login failed: Token not found in response"
+			Log.text = "Login failed: Token or role not found in response"
 	else:
 		Log.text = "Login failed: " + str(response_code)
 

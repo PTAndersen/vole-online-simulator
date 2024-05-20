@@ -1,0 +1,156 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Menu/Teacher/ClassroomReview.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 593.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+margin_right = 251.0
+margin_bottom = 586.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 100
+
+[node name="ClassLabel" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+margin_right = 251.0
+margin_bottom = 14.0
+text = "Class:"
+
+[node name="ActionContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+margin_top = 114.0
+margin_right = 251.0
+margin_bottom = 200.0
+
+[node name="Selected" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/ActionContainer"]
+margin_right = 251.0
+margin_bottom = 14.0
+size_flags_vertical = 0
+autowrap = true
+
+[node name="ReviewSelected" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/ActionContainer"]
+margin_top = 18.0
+margin_right = 251.0
+margin_bottom = 38.0
+text = "Review selected student or exercise"
+
+[node name="CreateExercise" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/ActionContainer"]
+margin_top = 42.0
+margin_right = 251.0
+margin_bottom = 62.0
+text = "Create new exercise"
+
+[node name="BackButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/ActionContainer"]
+margin_top = 66.0
+margin_right = 251.0
+margin_bottom = 86.0
+text = "Back"
+
+[node name="DeleteContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+margin_top = 300.0
+margin_right = 251.0
+margin_bottom = 523.0
+
+[node name="RemoveLabel" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/DeleteContainer"]
+margin_right = 251.0
+margin_bottom = 14.0
+text = "Check the box to enable removal"
+
+[node name="RemoveCheckBox" type="CheckBox" parent="PanelContainer/HBoxContainer/VBoxContainer/DeleteContainer"]
+margin_top = 18.0
+margin_right = 251.0
+margin_bottom = 42.0
+
+[node name="RemoveStudentButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/DeleteContainer"]
+margin_top = 46.0
+margin_right = 251.0
+margin_bottom = 66.0
+text = "Remove selected student or exercise"
+
+[node name="Log" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/DeleteContainer"]
+margin_top = 70.0
+margin_right = 251.0
+margin_bottom = 84.0
+
+[node name="DeleteLabel" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/DeleteContainer"]
+margin_top = 88.0
+margin_right = 251.0
+margin_bottom = 153.0
+text = "
+
+Type DELETE and click button to delete
+class permantly, this is not reversible."
+
+[node name="DeleteLineEdit" type="LineEdit" parent="PanelContainer/HBoxContainer/VBoxContainer/DeleteContainer"]
+margin_top = 157.0
+margin_right = 251.0
+margin_bottom = 181.0
+
+[node name="DeleteButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/DeleteContainer"]
+margin_top = 185.0
+margin_right = 251.0
+margin_bottom = 205.0
+text = "Delete class"
+
+[node name="Log2" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/DeleteContainer"]
+margin_top = 209.0
+margin_right = 251.0
+margin_bottom = 223.0
+
+[node name="VBoxContainer1" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+margin_left = 255.0
+margin_right = 758.0
+margin_bottom = 586.0
+rect_pivot_offset = Vector2( -621, 315 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.04
+
+[node name="Students" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer1"]
+margin_right = 503.0
+margin_bottom = 31.0
+size_flags_vertical = 0
+text = "Students
+"
+autowrap = true
+
+[node name="StudentsContainer" type="GridContainer" parent="PanelContainer/HBoxContainer/VBoxContainer1"]
+margin_top = 35.0
+margin_right = 503.0
+margin_bottom = 35.0
+columns = 2
+
+[node name="AssignmentContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+margin_left = 762.0
+margin_right = 1010.0
+margin_bottom = 586.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Assignments" type="Label" parent="PanelContainer/HBoxContainer/AssignmentContainer"]
+margin_right = 248.0
+margin_bottom = 31.0
+size_flags_vertical = 0
+text = "Exercises
+"
+autowrap = true
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/ActionContainer/ReviewSelected" to="." method="_on_ReviewClassroom_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/ActionContainer/CreateExercise" to="." method="_on_CreateExercise_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/ActionContainer/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/DeleteContainer/RemoveStudentButton" to="." method="_on_RemoveStudentButton_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/DeleteContainer/DeleteButton" to="." method="_on_DeleteButton_pressed"]

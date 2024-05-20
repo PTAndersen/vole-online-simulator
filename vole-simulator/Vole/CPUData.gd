@@ -49,7 +49,6 @@ func process_input(input_text: String):
 			break
 		
 		var location_hex = input_text.substr(operand_start, operand_end - operand_start)
-		print("Initial Location: ", location_hex)
 		
 		var next_operand_start = input_text.find("[", operand_end)
 		var pairs_text = ""
