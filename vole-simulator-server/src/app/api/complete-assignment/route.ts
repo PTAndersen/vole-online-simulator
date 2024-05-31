@@ -14,29 +14,27 @@ async function verifyTokenAndCheckStudent(token: string): Promise<{ userId: numb
         if(decoded.role === 'STUDENT') {
             return { userId: decoded.userId, role: decoded.role };
         } else {
-            console.error('Access denied: User is not a student');
             return null;
         }
     } catch (error) {
-        console.error('Token verification failed:', error);
         return null;
     }
 }
 
 export async function POST(request: NextRequest) {
-    const { classCode, exerciseId } = await request.json();
-    const sessionToken = request.headers.get('authorization')?.split(' ')[1];
-
-    if (!classCode || !exerciseId || !sessionToken) {
-        return new NextResponse(JSON.stringify({ message: 'Class code, exercise ID, and/or authorization token are required' }), { status: 400 });
-    }
-
-    const user = await verifyTokenAndCheckStudent(sessionToken);
-    if (!user) {
-        return new NextResponse(JSON.stringify({ message: 'Unauthorized or invalid token' }), { status: 403 });
-    }
-
     try {
+        const { classCode, exerciseId } = await request.json();
+        const sessionToken = request.headers.get('authorization')?.split(' ')[1];
+
+        if (!classCode || !exerciseId || !sessionToken) {
+            return new NextResponse(JSON.stringify({ message: 'Class code, exercise ID, and/or authorization token are required' }), { status: 400 });
+        }
+
+        const user = await verifyTokenAndCheckStudent(sessionToken);
+        if (!user) {
+            return new NextResponse(JSON.stringify({ message: 'Unauthorized or invalid token' }), { status: 403 });
+        }
+
         const assignment = await prisma.assignment.findFirst({
             where: {
                 classroom: {
@@ -62,7 +60,6 @@ export async function POST(request: NextRequest) {
 
         return new NextResponse(JSON.stringify({ message: 'Assignment completed successfully', assignment: updatedAssignment }), { status: 200 });
     } catch (error) {
-        console.error('Error updating assignment:', error);
         return new NextResponse(JSON.stringify({ message: 'Server error' }), { status: 500 });
     }
 }

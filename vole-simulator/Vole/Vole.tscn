@@ -39,53 +39,60 @@ margin_bottom = 291.0
 
 [node name="ResetCPU" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
 margin_right = 80.0
-margin_bottom = 20.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 text = "Reset CPU"
 
 [node name="LoadInput" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
-margin_top = 24.0
+margin_top = 48.0
 margin_right = 80.0
-margin_bottom = 74.0
+margin_bottom = 93.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Load Input"
 
 [node name="Run" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
-margin_top = 78.0
+margin_top = 97.0
 margin_right = 80.0
-margin_bottom = 128.0
+margin_bottom = 141.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Run"
 
 [node name="SingleStep" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
-margin_top = 132.0
+margin_top = 145.0
 margin_right = 80.0
-margin_bottom = 182.0
+margin_bottom = 190.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "SingleStep"
 
 [node name="Halt" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
-margin_top = 186.0
+margin_top = 194.0
 margin_right = 80.0
-margin_bottom = 236.0
+margin_bottom = 238.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Halt"
 
 [node name="Quit" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
-margin_top = 240.0
+margin_top = 242.0
 margin_right = 80.0
-margin_bottom = 291.0
+margin_bottom = 287.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Quit"
+
+[node name="Stats" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox"]
+margin_top = 291.0
+margin_right = 80.0
+margin_bottom = 291.0
 
 [node name="TextInput" type="TextEdit" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top"]
 margin_left = 84.0

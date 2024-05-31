@@ -11,33 +11,31 @@ async function verifyTokenAndCheckTeacher(token: string): Promise<number | null>
         if(decoded.role === 'TEACHER') {
             return decoded.userId;
         } else {
-            console.log('Access denied: User is not a teacher');
             return null;
         }
     } catch (error) {
-        console.error('Token verification failed:', error);
         return null;
     }
 }
 
 export async function POST(request: NextRequest) {
-    const data = await request.json();
-    const { sessionToken, classCode, name, description, randomCell, resultCell, resultValue, cycleConstraint, mustUseInstructions } = data;
-
-    if (!classCode){
-        return new NextResponse(JSON.stringify({ message: 'Class code is required' }), { status: 400 });
-    }
-
-    if (!sessionToken || !name || !description || !resultCell || !resultValue || !cycleConstraint || !mustUseInstructions) {
-        return new NextResponse(JSON.stringify({ message: 'Required fields are missing' }), { status: 400 });
-    }
-
-    const userId = await verifyTokenAndCheckTeacher(sessionToken);
-    if (!userId) {
-        return new NextResponse(JSON.stringify({ message: 'Unauthorized or invalid token' }), { status: 403 });
-    }
-
     try {
+        const data = await request.json();
+        const { sessionToken, classCode, name, description, randomCell, resultCell, resultValue, cycleConstraint, mustUseInstructions } = data;
+    
+        if (!classCode){
+            return new NextResponse(JSON.stringify({ message: 'Class code is required' }), { status: 400 });
+        }
+    
+        if (!sessionToken || !name || !description || !resultCell || !resultValue || !cycleConstraint || !mustUseInstructions) {
+            return new NextResponse(JSON.stringify({ message: 'Required fields are missing' }), { status: 400 });
+        }
+    
+        const userId = await verifyTokenAndCheckTeacher(sessionToken);
+        if (!userId) {
+            return new NextResponse(JSON.stringify({ message: 'Unauthorized or invalid token' }), { status: 403 });
+        }
+
         const classroom = await prisma.classroom.findUnique({
             where: { classCode }
         });
@@ -83,7 +81,6 @@ export async function POST(request: NextRequest) {
 
         return new NextResponse(JSON.stringify(newExercise), { status: 201 });
     } catch (error) {
-        console.error('Error creating exercise:', error);
         return new NextResponse(JSON.stringify({ message: 'Server error' }), { status: 500 });
     }
 }

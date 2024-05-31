@@ -51,7 +51,6 @@ export const POST = async (request: NextRequest) => {
 
     return new NextResponse(JSON.stringify({ message: 'Login successful', token, role: user.role.toUpperCase() }), { status: 200 });
   } catch (error) {
-    console.error('Login error:', error);
     return new NextResponse(JSON.stringify({ message: 'Server error' }), { status: 500 });
   }
 };

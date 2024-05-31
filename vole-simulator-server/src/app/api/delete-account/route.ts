@@ -6,18 +6,18 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const prisma = new PrismaClient();
 
 export const DELETE = async (request: NextRequest) => {
-    const sessionToken = request.headers.get('authorization')?.split(' ')[1];
-
-    if (!sessionToken) {
-        return new NextResponse(JSON.stringify({ message: 'Authorization token is required' }), { status: 401 });
-    }
-
-    const user = await verifyTokenAndGetUserRole(sessionToken);
-    if (!user) {
-        return new NextResponse(JSON.stringify({ message: 'Invalid or expired token' }), { status: 403 });
-    }
-
     try {
+        const sessionToken = request.headers.get('authorization')?.split(' ')[1];
+
+        if (!sessionToken) {
+            return new NextResponse(JSON.stringify({ message: 'Authorization token is required' }), { status: 401 });
+        }
+
+        const user = await verifyTokenAndGetUserRole(sessionToken);
+        if (!user) {
+            return new NextResponse(JSON.stringify({ message: 'Invalid or expired token' }), { status: 403 });
+        }
+        
         if (user.role === 'STUDENT') {
             await deleteStudentAccount(user.userId);
         } else if (user.role === 'TEACHER') {
@@ -28,8 +28,7 @@ export const DELETE = async (request: NextRequest) => {
             'Content-Type': 'application/json'
         } });
     } catch (error) {
-        console.error('Error deleting account:', error);
-        return new NextResponse(JSON.stringify({ message: 'Internal server error' }), { status: 500 });
+        return new NextResponse(JSON.stringify({ message: 'Server error' }), { status: 500 });
     }
 };
 
@@ -38,7 +37,6 @@ async function verifyTokenAndGetUserRole(token: string): Promise<{ userId: numbe
         const decoded = jwt.verify(token, JWT_SECRET as Secret) as any;
         return { userId: decoded.userId, role: decoded.role };
     } catch (error) {
-        console.error('Token verification failed:', error);
         return null;
     }
 }

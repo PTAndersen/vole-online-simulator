@@ -14,12 +14,25 @@ export default function Home() {
         <h1>Vole simulator installations</h1>
         <p>
           Windows installations: <br />
+          <a href="/downloads/windows/vole-simulator-windows.zip" download>
+            Download for Windows
+          </a>
+          <br />
           iOS installations: <br />
+          <a href="/downloads/ios/vole-simulator-ios.zip" download>
+            Download for iOS
+          </a>
+          <br />
           Linux installations: <br />
+          <a href="/downloads/linux/vole-simulator-linux.zip" download>
+            Download for Linux
+          </a>
         </p>
         <h1>About</h1>
-        <p>This a simple 4 bit cpu simulator for teaching purposes. <br />
-          Created by Peter Tipsmark Andersen as part of his bachelor thesis 2024</p>
+        <p>
+          This a simple 8 bit cpu simulator for teaching purposes. <br />
+          Created by Peter Tipsmark Andersen as part of his bachelor thesis 2024
+        </p>
       </div>
     </main>
   );

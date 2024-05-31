@@ -13,12 +13,12 @@ var identifiers = [
 	"R8", "R9", "RA", "RB", "RC", "RD", "RE", "RF", 
 	"0", "1", "2", "3", "4", "5", "6", "7", "8", "", 
 	"9", "A", "B", "C", "D", "E", "F", "PC", "IR"]
-
+var time_running = 0
+var single_step = false
 
 func _ready():
 	cpu_data.reset_global_variables()
-	populate_memory_container()
-	populate_cpu_container()
+	update_ui()
 	var classroom_name = get_node("PanelContainer/MarginContainer/HBoxContainer/AssignmentsContainer/ClassName")
 	classroom_name.text = SessionManager.classroom_name
 	if SessionManager.session_token != "" and SessionManager.classroom_name != "":
@@ -210,6 +210,25 @@ func display_assignment(assignment_index):
 	assignments_container.add_child(back_button)
 
 
+func update_ui():
+	populate_cpu_container()
+	populate_memory_container()
+	var stats_box = get_node("PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/Top/ButtonBox/Stats")
+	for child in stats_box.get_children():
+		child.queue_free()
+	var time_running_label = Label.new()
+	time_running_label.rect_min_size = Vector2(100, -1)
+	time_running_label.autowrap = true
+	time_running_label.text = "CPU run time:   " + str(time_running)
+	stats_box.add_child(time_running_label)
+	
+	var cycle_count_label = Label.new()
+	cycle_count_label.rect_min_size = Vector2(100, -1)
+	cycle_count_label.autowrap = true
+	cycle_count_label.text = "Cycle count:    " + str(cpu_data.cycle_count)
+	stats_box.add_child(cycle_count_label)
+
+
 func _on_back_button_pressed():
 	populate_assignment_data()
 
@@ -251,14 +270,20 @@ func run_cpu_cycle() -> void:
 	cpu_simulator.fetch()
 	if assignment_handler != null and assignment_handler.check_success():
 		complete_assignment()
-	populate_cpu_container()
-	populate_memory_container()
+	
 
 
 func _process(delta):
+	if (single_step):
+		cpu_data.run_cpu = true
+
 	if (cpu_data.run_cpu):
 		run_cpu_cycle()
-		
+		time_running += delta
+		update_ui()
+		if (single_step):
+			single_step = false
+			cpu_data.run_cpu = false
 		
 
 
@@ -283,13 +308,13 @@ func _on_Halt_pressed():
 
 
 func _on_SingleStep_pressed():
-	run_cpu_cycle()
+	single_step = true
 
 
 func _on_ResetCPU_pressed() -> void:
 	cpu_data.reset_global_variables()
-	populate_cpu_container()
-	populate_memory_container()
+	time_running = 0
+	update_ui()
 
 
 func _on_LoadInput_pressed() -> void:

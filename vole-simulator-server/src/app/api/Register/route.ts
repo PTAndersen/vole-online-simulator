@@ -67,7 +67,6 @@ export const POST = async (request: NextRequest) => {
       'Content-Type': 'application/json'
     } });
   } catch (error) {
-    console.error('Registration error:', error);
     return new NextResponse(JSON.stringify({ message: 'Server error' }), { status: 500 });
   }
 };

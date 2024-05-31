@@ -6,6 +6,7 @@ var ir = "0000"
 var run_cpu = false
 var grid_values = []
 var cpu_values = {}
+var cycle_count = 0
 
 
 func reset_global_variables() -> void:
@@ -15,6 +16,7 @@ func reset_global_variables() -> void:
 	run_cpu = false
 	pc = "00"
 	ir = "0000"
+	cycle_count = 0
 	
 	for row in range(rows):
 		var row_values = []

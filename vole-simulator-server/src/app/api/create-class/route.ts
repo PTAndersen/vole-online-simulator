@@ -11,19 +11,20 @@ if (!JWT_SECRET) {
 
 const prisma = new PrismaClient();
 
-async function verifyTokenAndGetUserId(token: string): Promise<number | null> {
+async function verifyTokenAndCheckTeacher(token: string): Promise<number | null> {
     try {
         const decoded = jwt.verify(token, JWT_SECRET as Secret) as any;
-        return decoded.userId;
+        if(decoded.role === 'TEACHER') {
+            return decoded.userId;
+        } else {
+            return null;
+        }
     } catch (error) {
-        console.error('Token verification failed:', error);
         return null;
     }
 }
 
 async function createClassroom(name: string, teacherId: number): Promise<string | false> {
-    const classCode = randomBytes(6).toString('hex');
-
     const existingClassroom = await prisma.classroom.findFirst({
         where: {
             name,
@@ -35,6 +36,7 @@ async function createClassroom(name: string, teacherId: number): Promise<string 
         return false;
     }
 
+    const classCode = randomBytes(6).toString('hex');
     const classroom = await prisma.classroom.create({
         data: {
             name,
@@ -54,7 +56,7 @@ export const POST = async (request: NextRequest) => {
             return new NextResponse(JSON.stringify({ message: 'Session token and class name are required' }), { status: 400 });
         }
 
-        const teacherId = await verifyTokenAndGetUserId(sessionToken);
+        const teacherId = await verifyTokenAndCheckTeacher(sessionToken);
         if (!teacherId) {
             return new NextResponse(JSON.stringify({ message: 'Invalid or expired token' }), { status: 403 });
         }
@@ -69,7 +71,6 @@ export const POST = async (request: NextRequest) => {
             'Content-Type': 'application/json'
         } });
     } catch (error) {
-        console.error('Error creating classroom:', error);
         return new NextResponse(JSON.stringify({ message: 'Server error' }), { status: 500 });
     }
 };

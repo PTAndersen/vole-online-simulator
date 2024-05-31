@@ -33,6 +33,7 @@ func decode() -> void:
 
 
 func execute(opcode: String, operands: Array):
+	cpu_data.cycle_count += 1
 	match opcode:
 		"1":
 			load_register_from_address(operands)
