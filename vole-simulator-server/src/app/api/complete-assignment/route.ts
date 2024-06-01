@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
             }
         });
 
-        return new NextResponse(JSON.stringify({ message: 'Assignment completed successfully', assignment: updatedAssignment }), { status: 200 });
+        return new NextResponse(JSON.stringify({ message: 'Assignment completed successfully', assignment: updatedAssignment }), { status: 201 });
     } catch (error) {
         return new NextResponse(JSON.stringify({ message: 'Server error' }), { status: 500 });
     }

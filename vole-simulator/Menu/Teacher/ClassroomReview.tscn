@@ -130,7 +130,7 @@ autowrap = true
 margin_top = 35.0
 margin_right = 503.0
 margin_bottom = 35.0
-columns = 2
+columns = 4
 
 [node name="AssignmentContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
 margin_left = 762.0

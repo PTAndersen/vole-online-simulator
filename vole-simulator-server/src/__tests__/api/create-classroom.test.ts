@@ -1,4 +1,4 @@
-import { POST } from '../../app/api/create-class/route';
+import { POST } from '../../app/api/create-classroom/route';
 import { NextRequest } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import jwt from 'jsonwebtoken';
@@ -24,7 +24,7 @@ const mockPrisma = new PrismaClient();
 const mockJwt = jwt as jest.Mocked<typeof jwt>;
 const mockRandomBytes = randomBytes as jest.Mock;
 
-describe('POST /api/create-class', () => {
+describe('POST /api/create-classroom', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -35,7 +35,7 @@ describe('POST /api/create-class', () => {
       className: 'Test Class',
     };
 
-    const request = new NextRequest('http://localhost/api/create-class', {
+    const request = new NextRequest('http://localhost/api/create-classroom', {
       method: 'POST',
       body: JSON.stringify(requestBody),
     });
@@ -81,7 +81,7 @@ describe('POST /api/create-class', () => {
       className: 'Test Class',
     };
 
-    const request = new NextRequest('http://localhost/api/create-class', {
+    const request = new NextRequest('http://localhost/api/create-classroom', {
       method: 'POST',
       body: JSON.stringify(requestBody),
     });
@@ -99,7 +99,7 @@ describe('POST /api/create-class', () => {
       className: 'Test Class',
     };
 
-    const request = new NextRequest('http://localhost/api/create-class', {
+    const request = new NextRequest('http://localhost/api/create-classroom', {
       method: 'POST',
       body: JSON.stringify(requestBody),
     });
@@ -124,7 +124,7 @@ describe('POST /api/create-class', () => {
       className: 'Test Class',
     };
 
-    const request = new NextRequest('http://localhost/api/create-class', {
+    const request = new NextRequest('http://localhost/api/create-classroom', {
       method: 'POST',
       body: JSON.stringify(requestBody),
     });

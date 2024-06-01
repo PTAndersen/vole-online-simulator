@@ -26,8 +26,6 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func check_success() -> bool:
-	print(cpu_data.cpu_values[result_cell])
-	print(result_value)
 	if cpu_data.cpu_values[result_cell] == result_value:
 		return true
 	return false

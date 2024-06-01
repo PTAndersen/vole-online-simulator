@@ -43,11 +43,11 @@ margin_bottom = 32.0
 size_flags_vertical = 0
 autowrap = true
 
-[node name="JoinClassroom" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/ActionContainer"]
+[node name="EnterClassroom" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/ActionContainer"]
 margin_top = 36.0
 margin_right = 330.0
 margin_bottom = 56.0
-text = "Join selected classroom"
+text = "Enter selected classroom"
 
 [node name="AddContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer"]
 margin_top = 228.0
@@ -58,7 +58,7 @@ margin_bottom = 346.0
 margin_right = 330.0
 margin_bottom = 31.0
 size_flags_vertical = 0
-text = "Add classroom (classroom code)
+text = "Join classroom (classroom code)
 "
 autowrap = true
 
@@ -67,7 +67,7 @@ margin_top = 35.0
 margin_right = 330.0
 margin_bottom = 59.0
 
-[node name="AddButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/AddContainer"]
+[node name="JoinButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainer/AddContainer"]
 margin_top = 63.0
 margin_right = 330.0
 margin_bottom = 83.0
@@ -127,8 +127,8 @@ columns = 5
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
-[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/ActionContainer/JoinClassroom" to="." method="_on_JoinClassroom_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/AddContainer/AddButton" to="." method="_on_AddButton_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/ActionContainer/EnterClassroom" to="." method="_on_EnterClassroom_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/AddContainer/JoinButton" to="." method="_on_JoinButton_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/AccountContainer/OfflineVersion" to="." method="_on_OfflineVersion_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/AccountContainer/Settings Button" to="." method="_on_Settings_Button_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainer/AccountContainer/LogoutButton" to="." method="_on_LogoutButton_pressed"]
