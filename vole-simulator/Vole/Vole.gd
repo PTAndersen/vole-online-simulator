@@ -4,6 +4,7 @@ var http_request: HTTPRequest
 var headers = ["Content-Type: application/json", "Authorization: Bearer " + str(SessionManager.session_token)]
 
 var assignments = []
+var current_assignment_index
 
 var cpu_data = CPUData.new()
 var cpu_simulator = CPUSimulator.new(cpu_data)
@@ -229,7 +230,7 @@ func update_ui():
 
 
 func _on_back_button_pressed():
-	populate_assignment_data()
+	send_classroom_fetch_request(headers)
 
 func populate_assignment_data():
 	var assignments_container = get_node("PanelContainer/MarginContainer/HBoxContainer/AssignmentsContainer")
@@ -259,7 +260,7 @@ func populate_assignment_data():
 
 func _on_assignment_button_pressed(assignment_name, assignment_index):
 	var current_selected = assignment_name
-	var current_selected_index = assignment_index
+	current_assignment_index = assignment_index
 	#get_node("PanelContainer/HBoxContainer/VBoxContainer/ActionContainer/Selected").text = "Selected: " + assignment_name
 	display_assignment(assignment_index)
 	assignment_handler = AssignmentHandler.new(cpu_data, assignments[assignment_index]["exercise"])
@@ -333,7 +334,7 @@ func complete_assignment():
 	}
 	var body = to_json(complete_assignment_data)
 	send_completed_assignment_request(body)
-	send_classroom_fetch_request(headers)
+	
 
 
 func send_classroom_fetch_request(headers: PoolStringArray) -> void:
@@ -380,8 +381,8 @@ func _on_completed_assignment_request(result, response_code, headers, body):
 	var log_label = get_node("PanelContainer/HBoxContainer/VBoxContainer/AddContainer/Log")
 	if response_code == 201:
 		var response = parse_json(body.get_string_from_utf8())
+		assignments[current_assignment_index]["status"] = "COMPLETED"
+		display_assignment(current_assignment_index)
 	else:
 		pass
 	http_request.disconnect("request_completed", self, "_on_completed_assignment_request")
-
-

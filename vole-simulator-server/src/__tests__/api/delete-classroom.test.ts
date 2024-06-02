@@ -1,4 +1,4 @@
-import { DELETE } from '../../app/api/delete-class/route';
+import { DELETE } from '../../app/api/delete-classroom/route';
 import { NextRequest } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import jwt from 'jsonwebtoken';
@@ -24,7 +24,7 @@ jest.mock('jsonwebtoken');
 const mockPrisma = new PrismaClient();
 const mockJwt = jwt as jest.Mocked<typeof jwt>;
 
-describe('DELETE /api/delete-class', () => {
+describe('DELETE /api/delete-classroom', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -34,7 +34,7 @@ describe('DELETE /api/delete-class', () => {
       classCode: 'class-code',
     };
 
-    const request = new NextRequest('http://localhost/api/delete-class', {
+    const request = new NextRequest('http://localhost/api/delete-classroom', {
       method: 'DELETE',
       body: JSON.stringify(requestBody),
       headers: {
@@ -76,7 +76,7 @@ describe('DELETE /api/delete-class', () => {
       classCode: 'class-code',
     };
 
-    const request = new NextRequest('http://localhost/api/delete-class', {
+    const request = new NextRequest('http://localhost/api/delete-classroom', {
       method: 'DELETE',
       body: JSON.stringify(requestBody),
     });
@@ -93,7 +93,7 @@ describe('DELETE /api/delete-class', () => {
       classCode: 'class-code',
     };
 
-    const request = new NextRequest('http://localhost/api/delete-class', {
+    const request = new NextRequest('http://localhost/api/delete-classroom', {
       method: 'DELETE',
       body: JSON.stringify(requestBody),
       headers: {
@@ -117,7 +117,7 @@ describe('DELETE /api/delete-class', () => {
       classCode: 'class-code',
     };
 
-    const request = new NextRequest('http://localhost/api/delete-class', {
+    const request = new NextRequest('http://localhost/api/delete-classroom', {
       method: 'DELETE',
       body: JSON.stringify(requestBody),
       headers: {
@@ -139,7 +139,7 @@ describe('DELETE /api/delete-class', () => {
       classCode: 'class-code',
     };
 
-    const request = new NextRequest('http://localhost/api/delete-class', {
+    const request = new NextRequest('http://localhost/api/delete-classroom', {
       method: 'DELETE',
       body: JSON.stringify(requestBody),
       headers: {
@@ -162,7 +162,7 @@ describe('DELETE /api/delete-class', () => {
       classCode: 'class-code',
     };
 
-    const request = new NextRequest('http://localhost/api/delete-class', {
+    const request = new NextRequest('http://localhost/api/delete-classroom', {
       method: 'DELETE',
       body: JSON.stringify(requestBody),
       headers: {

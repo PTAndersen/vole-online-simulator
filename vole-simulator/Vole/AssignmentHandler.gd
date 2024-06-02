@@ -23,8 +23,6 @@ func _init(in_cpu_data : CPUData, exercise_data).():
 
 
 func check_success() -> bool:
-	print(cpu_data.cpu_values[result_cell])
-	print(result_value)
 	if cpu_data.cpu_values[result_cell] == result_value:
 		return true
 	return false

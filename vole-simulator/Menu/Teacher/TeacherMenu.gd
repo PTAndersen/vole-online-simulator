@@ -35,9 +35,10 @@ func _on_CreateButton_pressed() -> void:
 
 
 func _on_ReviewClassroom_pressed() -> void:
-	SessionManager.classroom_name = current_class
-	SessionManager.class_code = current_class_code
-	get_tree().change_scene("res://Menu/Teacher/ClassroomReview.tscn")
+	if (current_class != ""):
+		SessionManager.classroom_name = current_class
+		SessionManager.class_code = current_class_code
+		get_tree().change_scene("res://Menu/Teacher/ClassroomReview.tscn")
 
 
 func _on_OfflineVersion_pressed() -> void:
@@ -111,7 +112,7 @@ func send_create_class_request(body: String) -> void:
 	http_request.disconnect("request_completed", self, "_on_classrooms_fetched")
 	http_request.connect("request_completed", self, "_on_create_class_completed")
 	var error = http_request.request(
-		"http://localhost:3000/api/create-class",
+		"http://localhost:3000/api/create-classroom",
 		headers,
 		true,  # SSL
 		HTTPClient.METHOD_POST,

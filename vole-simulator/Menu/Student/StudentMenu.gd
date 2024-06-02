@@ -17,14 +17,14 @@ func _ready() -> void:
 	update_classroom_list()
 
 
-func _on_JoinClassroom_pressed() -> void:
+func _on_EnterClassroom_pressed():
 	if current_class != "" and current_class_code != "":
 		SessionManager.classroom_name = current_class
 		SessionManager.class_code = current_class_code
 		get_tree().change_scene("res://Vole/Vole.tscn")
 
 
-func _on_AddButton_pressed() -> void:
+func _on_JoinButton_pressed():
 	var log_label = get_node("PanelContainer/HBoxContainer/VBoxContainer/AddContainer/Log")
 	var class_code = get_node("PanelContainer/HBoxContainer/VBoxContainer/AddContainer/ClassCodeInput")
 	
@@ -140,4 +140,7 @@ func _on_join_class_completed(result, response_code, headers, body):
 	else:
 		log_label.text = "Join failed: " + str(response_code)
 	http_request.disconnect("request_completed", self, "_on_join_class_completed")
+
+
+
 
