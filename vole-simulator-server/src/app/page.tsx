@@ -12,21 +12,25 @@ export default function Home() {
         ></iframe>
 
         <h1>Vole simulator installations</h1>
-        <p>
-          Windows installations: <br />
-          <a href="/downloads/windows/vole-simulator-windows.zip" download>
-            Download for Windows
-          </a>
-          <br />
-          iOS installations: <br />
-          <a href="/downloads/ios/vole-simulator-ios.zip" download>
-            Download for iOS
-          </a>
-          <br />
-          Linux installations: <br />
-          <a href="/downloads/linux/vole-simulator-linux.zip" download>
-            Download for Linux
-          </a>
+        <p className="space-y-4">
+          <span className="block">
+            Windows 64 bit installations: <br />
+            <a href="/downloads/windows/vole-simulator-windows.zip" download className="text-blue-500 hover:text-blue-700 font-semibold underline">
+              Download for Windows
+            </a>
+          </span>
+          <span className="block">
+            MacOS 64 bit installations: <br />
+            <a href="/downloads/ios/vole-simulator-macos.zip" download className="text-blue-500 hover:text-blue-700 font-semibold underline">
+              Download for MacOS
+            </a>
+          </span>
+          <span className="block">
+            Linux 64 bit installations: <br />
+            <a href="/downloads/linux/vole-simulator-linux.zip" download className="text-blue-500 hover:text-blue-700 font-semibold underline">
+              Download for Linux
+            </a>
+          </span>
         </p>
         <h1>About</h1>
         <p>
