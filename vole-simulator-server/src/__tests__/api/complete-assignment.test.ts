@@ -44,7 +44,7 @@ describe('POST /api/complete-assignment', () => {
     const response = await POST(request);
     const responseBody = await response.json();
 
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(201);
     expect(responseBody).toEqual({
       message: 'Assignment completed successfully',
       assignment: { id: 'assignment-id', status: 'COMPLETED' },
