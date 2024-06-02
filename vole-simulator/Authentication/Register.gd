@@ -70,7 +70,7 @@ func _on_request_completed(result, response_code, headers, body):
 	if response_code == 201:
 		var response = parse_json(body.get_string_from_utf8())
 		if "token" in response:
-			SessionManager.store_token(response["token"])
+			SessionManager.session_token = response["token"]
 			Log.text = "Registration successful! Please log in."
 			if response["role"] == "STUDENT":
 				get_tree().change_scene("res://Menu/Student/StudentMenu.tscn")

@@ -6,9 +6,6 @@ var role = ""
 var classroom_name = ""
 var class_code = ""
 
-func store_token(token: String):
-	session_token = token
-
 func reset_session():
 	session_token = ""
 	role = ""

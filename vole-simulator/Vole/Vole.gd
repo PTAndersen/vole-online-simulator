@@ -155,7 +155,6 @@ func populate_memory_container():
 
 func display_assignment(assignment_index):
 	var assignments_container = get_node("PanelContainer/MarginContainer/HBoxContainer/AssignmentsContainer")
-	# Clear existing children
 	for child in assignments_container.get_children():
 		child.queue_free()
 
@@ -269,8 +268,7 @@ func _on_assignment_button_pressed(assignment_name, assignment_index):
 func run_cpu_cycle() -> void:
 	cpu_simulator.fetch()
 	if assignment_handler != null and assignment_handler.check_success():
-		complete_assignment()
-	
+		complete_assignment()	
 
 
 func _process(delta):

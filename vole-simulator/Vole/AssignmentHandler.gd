@@ -22,9 +22,6 @@ func _init(in_cpu_data : CPUData, exercise_data).():
 	result_value = exercise_data["resultValue"]
 
 
-func _ready() -> void:
-	pass # Replace with function body.
-
 func check_success() -> bool:
 	print(cpu_data.cpu_values[result_cell])
 	print(result_value)
@@ -32,6 +29,3 @@ func check_success() -> bool:
 		return true
 	return false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass

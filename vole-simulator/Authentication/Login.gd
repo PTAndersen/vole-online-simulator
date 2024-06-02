@@ -52,7 +52,7 @@ func _on_request_completed(result, response_code, headers, body):
 	if response_code == 200:
 		var response = parse_json(body.get_string_from_utf8())
 		if "token" in response and "role" in response:
-			SessionManager.store_token(response["token"])
+			SessionManager.session_token = response["token"]
 			SessionManager.role = response["role"]
 			Log.text = "Login successful!"
 			if response["role"] == "STUDENT":
